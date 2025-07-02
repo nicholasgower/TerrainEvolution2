@@ -174,7 +174,7 @@ function GrassBiomeTrees( )
       [ "dead-dry-hairy-tree" ] = false,
       [ "dry-hairy-tree" ] = false,
     }
-    for _, tree in pairs( game.entity_prototypes ) do
+    for _, tree in pairs( prototypes.get_entity_filtered{{filter = "type", type = "tree"}}) do
       if tree.type == "tree"
         then
         if trees[ tree.name ]
@@ -210,7 +210,7 @@ function DirtBiomeTrees( )
       [ "dead-dry-hairy-tree" ] = false,
       [ "dry-hairy-tree" ] = false,
     }
-    for _, tree in pairs( game.entity_prototypes ) do
+    for _, tree in pairs( prototypes.get_entity_filtered{{filter = "type", type = "tree"}} ) do
       if tree.type == "tree"
         then
         if trees[ tree.name ]
@@ -246,7 +246,7 @@ function DesertBiomeTrees( )
       [ "dead-dry-hairy-tree" ] = false,
       [ "dry-hairy-tree" ] = false,
     }
-    for _, tree in pairs( game.entity_prototypes ) do
+    for _, tree in pairs( prototypes.get_entity_filtered{{filter = "type", type = "tree"}} ) do
       if tree.type == "tree"
         then
         if trees[ tree.name ]
@@ -282,7 +282,7 @@ function SandBiomeTrees( )
       [ "dead-dry-hairy-tree" ] = false,
       [ "dry-hairy-tree" ] = false,
     }
-    for _, tree in pairs( game.entity_prototypes ) do
+    for _, tree in pairs( prototypes.get_entity_filtered{{filter = "type", type = "tree"}} ) do
       if tree.type == "tree"
         then
         if trees[ tree.name ]
@@ -318,7 +318,7 @@ function NuclearBiomeTrees( )
       [ "dead-dry-hairy-tree" ] = false,
       [ "dry-hairy-tree" ] = false,
     }
-    for _, tree in pairs( game.entity_prototypes ) do
+    for _, tree in pairs( prototypes.get_entity_filtered{{filter = "type", type = "tree"}} ) do
       if tree.type == "tree"
         then
         if trees[ tree.name ]
@@ -354,7 +354,7 @@ function DeadBiomeTrees( )
       [ "dead-dry-hairy-tree" ] = true,
       [ "dry-hairy-tree" ] = true,
     }
-    for _, tree in pairs( game.entity_prototypes ) do
+    for _, tree in pairs( prototypes.get_entity_filtered{{filter = "type", type = "tree"}} ) do
       if tree.type == "tree" then
         if trees[ tree.name ]
           then
