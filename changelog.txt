@@ -1,0 +1,121 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2020-10-16
+  Features:
+    - Soil degradation/evolution
+    - Floods
+    - Drought
+    - Fires
+    - Fires burn the soil
+    - Trees expantion
+    - Trees evolution
+    - Rotting trees
+    - Hi Ripley
+---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 2020-10-17
+  Fixes:
+    - Fixed grass biome
+---------------------------------------------------------------------------------------------------
+Version: 1.0.2
+Date: 2020-10-18
+  Changes:
+    - Smoother cell degradation/evolution
+  Features:
+    - New setting
+---------------------------------------------------------------------------------------------------
+Version: 1.0.3
+Date: 2020-10-18
+  Changes:
+    - Improved tree generation
+---------------------------------------------------------------------------------------------------
+Version: 1.0.4
+Date: 2020-10-19
+  Changes:
+    - Improved floods
+---------------------------------------------------------------------------------------------------
+Version: 1.0.5
+Date: 2020-10-20
+  Features:
+    - Weathering of cliffs. When a tree near a rock dries up, there is a 5% chance that the rock cell will disappear
+---------------------------------------------------------------------------------------------------
+Version: 1.0.6
+Date: 2020-10-23
+  Features:
+    - Dynamic daily cycle with presets, seasons, new settings
+---------------------------------------------------------------------------------------------------
+Version: 1.0.7
+Date: 2020-10-25
+  Changes:
+    - Changes in the "winter is coming" preset. See the faq on the website
+  Features:
+    - Shortcut key (default "=") for meteorological information, displays date, length of day, dusk and night
+---------------------------------------------------------------------------------------------------
+Version: 1.0.8
+Date: 2020-10-25
+  Changes:
+    - Refactoring
+---------------------------------------------------------------------------------------------------
+Version: 1.0.9
+Date: 2020-10-26
+  Changes:
+    - More accurate calculations
+---------------------------------------------------------------------------------------------------
+Version: 1.0.10
+Date: 2020-10-26
+  Fixes:
+    - Length of day, dusk and night
+---------------------------------------------------------------------------------------------------
+Version: 1.0.11
+Date: 2020-10-29
+  Fixes:
+    - Fixed desert biome
+  Changes:
+    - More meteorological information, displays pollution at current location, total pollution, evolution factor, wind direction and speed
+---------------------------------------------------------------------------------------------------
+Version: 1.0.12
+Date: 2020-11-2
+  Changes:
+    - Improved weathering of cliffs
+    - Improved tree expantion
+---------------------------------------------------------------------------------------------------
+Version: 1.0.13
+Date: 2020-12-14
+  Changes:
+    - Update to 1.1
+---------------------------------------------------------------------------------------------------
+Version: 1.1.14
+Date: 2021-02-16
+  Changes:
+    - Improved drought
+---------------------------------------------------------------------------------------------------
+Version: 1.1.15
+Date: 2021-03-21
+  Features:
+    - New setting - Tree spread pattern
+---------------------------------------------------------------------------------------------------
+Version: 1.1.16
+Date: 2021-03-26
+  Changes:
+    - Improved tree spread pattern
+---------------------------------------------------------------------------------------------------
+Version: 1.1.17
+Date: 2021-05-22
+  Fixes:
+    - Fixed https://mods.factorio.com/mod/TerrainEvolution/discussion/60a24a98d332207678cc92da
+    - Fixed https://mods.factorio.com/mod/TerrainEvolution/discussion/608cf5e11b3b2c290195e75c
+---------------------------------------------------------------------------------------------------
+Version: 1.1.18
+Date: 2021-09-17
+  Features:
+    - Dynamically changing darkness of the night
+---------------------------------------------------------------------------------------------------
+Version: 1.1.19
+Date: 2022-04-22
+  Changes:
+    - Added Ukrainian locale
+---------------------------------------------------------------------------------------------------
+Version: 1.1.20
+Date: 2022-07-30
+  Fixes:
+    - Improved compatibility with Alien Biomes mod
