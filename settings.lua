@@ -70,8 +70,8 @@ data:extend(
       type = "string-setting",
       name = "the_night_is_dark_and_full_of_terror",
       setting_type = "runtime-global",
-      allowed_values = { 0, 20, 40, 60, 80, 100, 120, "dynamic" },
-      default_value = 0,
+      allowed_values = { "dynamic" },
+      default_value = "dynamic",
       order = "fe",
     },
     {
