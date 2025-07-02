@@ -1,6 +1,6 @@
 function OnInit( )
-  global.te = { }
-  global.te = {
+  storage.te = { }
+  storage.te = {
     tiles = { },
     chunks = { },
     grass_trees = { },
@@ -151,7 +151,7 @@ function OnLoad( )
 end
 
 function GrassBiomeTrees( )
-  if #global.te.grass_trees == 0
+  if #storage.te.grass_trees == 0
     then
     local trees = {
       [ "tree-01" ] = true,
@@ -179,7 +179,7 @@ function GrassBiomeTrees( )
         then
         if trees[ tree.name ]
           then
-          table.insert( global.te.grass_trees, tree.name )
+          table.insert( storage.te.grass_trees, tree.name )
         end
       end
     end
@@ -187,7 +187,7 @@ function GrassBiomeTrees( )
 end
 
 function DirtBiomeTrees( )
-  if #global.te.dirt_trees == 0
+  if #storage.te.dirt_trees == 0
     then
     local trees = {
       [ "tree-01" ] = false,
@@ -215,7 +215,7 @@ function DirtBiomeTrees( )
         then
         if trees[ tree.name ]
           then
-          table.insert( global.te.dirt_trees, tree.name )
+          table.insert( storage.te.dirt_trees, tree.name )
         end
       end
     end
@@ -223,7 +223,7 @@ function DirtBiomeTrees( )
 end
 
 function DesertBiomeTrees( )
-  if #global.te.desert_trees == 0
+  if #storage.te.desert_trees == 0
     then
     local trees = {
       [ "tree-01" ] = false,
@@ -251,7 +251,7 @@ function DesertBiomeTrees( )
         then
         if trees[ tree.name ]
           then
-          table.insert( global.te.desert_trees, tree.name )
+          table.insert( storage.te.desert_trees, tree.name )
         end
       end
     end
@@ -259,7 +259,7 @@ function DesertBiomeTrees( )
 end
 
 function SandBiomeTrees( )
-  if #global.te.sand_trees == 0
+  if #storage.te.sand_trees == 0
     then
     local trees = {
       [ "tree-01" ] = false,
@@ -287,7 +287,7 @@ function SandBiomeTrees( )
         then
         if trees[ tree.name ]
           then
-          table.insert( global.te.sand_trees, tree.name )
+          table.insert( storage.te.sand_trees, tree.name )
         end
       end
     end
@@ -295,7 +295,7 @@ function SandBiomeTrees( )
 end
 
 function NuclearBiomeTrees( )
-  if #global.te.nuclear_trees == 0
+  if #storage.te.nuclear_trees == 0
     then
     local trees = {
       [ "tree-01" ] = false,
@@ -323,7 +323,7 @@ function NuclearBiomeTrees( )
         then
         if trees[ tree.name ]
           then
-          table.insert( global.te.nuclear_trees, tree.name )
+          table.insert( storage.te.nuclear_trees, tree.name )
         end
       end
     end
@@ -331,7 +331,7 @@ function NuclearBiomeTrees( )
 end
 
 function DeadBiomeTrees( )
-  if #global.te.dead_trees == 0
+  if #storage.te.dead_trees == 0
     then
     local trees = {
       [ "tree-01" ] = false,
@@ -358,7 +358,7 @@ function DeadBiomeTrees( )
       if tree.type == "tree" then
         if trees[ tree.name ]
           then
-          table.insert( global.te.dead_trees, tree.name )
+          table.insert( storage.te.dead_trees, tree.name )
         end
       end
     end
@@ -368,27 +368,27 @@ end
 function GetRandomTree( biome )
   if biome == "grass"
     then
-    return global.te.grass_trees[ global.te.random( 1, #global.te.grass_trees )]
+    return storage.te.grass_trees[ storage.te.random( 1, #storage.te.grass_trees )]
   elseif biome == "dirt"
     then
-    return global.te.dirt_trees[ global.te.random( 1, #global.te.dirt_trees )]
+    return storage.te.dirt_trees[ storage.te.random( 1, #storage.te.dirt_trees )]
   elseif biome == "desert"
     then
-    return global.te.desert_trees[ global.te.random( 1, #global.te.desert_trees )]
+    return storage.te.desert_trees[ storage.te.random( 1, #storage.te.desert_trees )]
   elseif biome == "sand"
     then
-    return global.te.sand_trees[ global.te.random( 1, #global.te.sand_trees )]
+    return storage.te.sand_trees[ storage.te.random( 1, #storage.te.sand_trees )]
   elseif biome == "nuclear"
     then
-    return global.te.nuclear_trees[ global.te.random( 1, #global.te.nuclear_trees )]
+    return storage.te.nuclear_trees[ storage.te.random( 1, #storage.te.nuclear_trees )]
   elseif biome == "dead"
     then
-    return global.te.dead_trees[ global.te.random( 1, #global.te.dead_trees )]
+    return storage.te.dead_trees[ storage.te.random( 1, #storage.te.dead_trees )]
   end
 end
 
 function NatureEvents( event )
-  global.te.tiles = { }
+  storage.te.tiles = { }
   local surface = game.surfaces[ 1 ]
   for j = 1, settings.global[ "chunks" ].value do
     RandomChunk( surface )
@@ -397,9 +397,9 @@ function NatureEvents( event )
       RandomBaseChunk( surface )
     end
   end
-  if #global.te.tiles > 0
+  if #storage.te.tiles > 0
     then
-    surface.set_tiles( global.te.tiles )
+    surface.set_tiles( storage.te.tiles )
   end
   -- if event.nth_tick == 600
   --   then
@@ -419,13 +419,13 @@ function ChunkProcessor( event )
   local surface = game.surfaces[ 1 ]
   if settings.global[ "more_agressive_base_chunks" ].value
     then
-    global.te.chunks = { }
+    storage.te.chunks = { }
     local chunks = surface.get_chunks( )
     local force = game.players[ 1 ].force
     for chunk in chunks do
       if surface.count_entities_filtered({ area = chunk.area, force = force }) > 0
         then
-        global.te.chunks[ #global.te.chunks + 1 ] = chunk
+        storage.te.chunks[ #storage.te.chunks + 1 ] = chunk
       end
     end
   end
@@ -433,9 +433,9 @@ function ChunkProcessor( event )
 end
 
 function RandomBaseChunk( surface )
-  if #global.te.chunks > 0
+  if #storage.te.chunks > 0
     then
-    EvolutionProcessor( global.te.chunks[ global.te.random( 1, #global.te.chunks )], surface )
+    EvolutionProcessor( storage.te.chunks[ storage.te.random( 1, #storage.te.chunks )], surface )
   else
     ChunkProcessor( )
   end
@@ -446,8 +446,8 @@ function RandomChunk( surface )
 end
 
 function RandomPosition( position )
-  position[ 1 ] = position[ 1 ] + global.te.random( -64, 64 )
-  position[ 2 ] = position[ 2 ] + global.te.random( -64, 64 )
+  position[ 1 ] = position[ 1 ] + storage.te.random( -64, 64 )
+  position[ 2 ] = position[ 2 ] + storage.te.random( -64, 64 )
   return position
 end
 
@@ -468,7 +468,7 @@ function EvolutionProcessor( chunk, surface )
     then
     limit = 8
   end
-  local position = {( chunk.x * 32 ) + global.te.random( -32, 32 ), ( chunk.y * 32 ) + global.te.random( -32, 32 )}
+  local position = {( chunk.x * 32 ) + storage.te.random( -32, 32 ), ( chunk.y * 32 ) + storage.te.random( -32, 32 )}
   if pollution > minimal_pollution
     then
     for i = 1, limit do
@@ -558,11 +558,11 @@ function SoilEvolution( surface, position, limit, chance )
   local tiles = surface.find_tiles_filtered{ position = position, radius = 16, name = tile_names, limit = limit }
   if tiles ~= nil then
     for _, tile in pairs ( tiles ) do
-      if global.te.random( 1, 99 ) < chance
+      if storage.te.random( 1, 99 ) < chance
         then
         if game.tile_prototypes[terraformation[ tile.name ]] ~= nil
           then
-            table.insert( global.te.tiles, { name = terraformation[ tile.name ], position = tile.position })
+            table.insert( storage.te.tiles, { name = terraformation[ tile.name ], position = tile.position })
           end
       end
     end
@@ -574,7 +574,7 @@ function Flood ( surface, position, limit, chance )
   if water_tiles ~= nil
     then
     for _, water_tile in pairs ( water_tiles ) do
-      if global.te.random( 1, 99 ) < chance
+      if storage.te.random( 1, 99 ) < chance
         then
         local name = "wooden-chest"
         local center = water_tile.position
@@ -588,7 +588,7 @@ function Flood ( surface, position, limit, chance )
           if ground_tiles ~= nil
             then
             for _, ground_tile in pairs ( ground_tiles ) do
-              table.insert( global.te.tiles, { name = "water", position = ground_tile.position })
+              table.insert( storage.te.tiles, { name = "water", position = ground_tile.position })
             end
           end
         end
@@ -602,13 +602,13 @@ function Drought ( surface, position, limit, chance )
   if ground_tiles ~= nil
     then
     for _, ground_tile in pairs ( ground_tiles ) do
-      if global.te.random( 1, 99 ) < chance
+      if storage.te.random( 1, 99 ) < chance
         then
         local water_tiles = surface.find_tiles_filtered{ position = ground_tile.position, radius = 1, collision_mask = "water-tile", limit = 1 }
         if water_tiles ~= nil
           then
           for _, water_tile in pairs ( water_tiles ) do
-            table.insert( global.te.tiles, { name = "sand-1", position = water_tile.position })
+            table.insert( storage.te.tiles, { name = "sand-1", position = water_tile.position })
           end
         end
       end
@@ -621,7 +621,7 @@ function Fire( surface, position, limit, chance )
   if trees ~= nil
     then
     for _, tree in pairs ( trees ) do
-      if global.te.random( 1, 99 ) < chance or tree.tree_stage_index > 2
+      if storage.te.random( 1, 99 ) < chance or tree.tree_stage_index > 2
         then
         surface.create_entity({ name = "fire-flame-on-tree", position = tree.position })
       end
@@ -663,7 +663,7 @@ function TreeEvolution( surface, position, limit, chance )
   if trees ~= nil
     then
     for _, tree in pairs ( trees ) do
-      if global.te.random( 1, 99 ) < chance
+      if storage.te.random( 1, 99 ) < chance
         then
         if tree.tree_color_index_max == 0 or tree.tree_color_index == tree.tree_color_index_max or tree.name == "tree-06" or tree.name == "tree-06-brown" or tree.graphics_variation > 9
           then
@@ -672,7 +672,7 @@ function TreeEvolution( surface, position, limit, chance )
             then
             local cliffs = surface.find_entities_filtered{ position = tree.position, radius = 2, type = "cliff", limit = 1 }
             for _, cliff in pairs ( cliffs ) do
-              if global.te.random( 1, 99 ) < 5
+              if storage.te.random( 1, 99 ) < 5
                 then
                 surface.create_entity({ name = "rock-big", position = cliff.position })
                 cliff.destroy({ do_cliff_correction = true })
@@ -735,19 +735,19 @@ function TreeRotted( surface, position, limit, chance, tiles )
     [ "sand-3" ] = "red-desert-3",
     [ "nuclear-ground" ] = "sand-1",
   }
-  local trees = surface.find_entities_filtered{ name = global.te.dead_trees, position = position, radius = 32, type = "tree", limit = limit }
+  local trees = surface.find_entities_filtered{ name = storage.te.dead_trees, position = position, radius = 32, type = "tree", limit = limit }
   if trees ~= nil
     then
     for _, tree in pairs ( trees ) do
       local tiles = surface.find_tiles_filtered{ position = tree.position, radius = 2, name = tile_names, limit = trees_rotted_tiles }
       for _, tile in pairs ( tiles ) do
-        if global.te.random( 1, 99 ) < chance
+        if storage.te.random( 1, 99 ) < chance
           then
           tree.destroy( )
           PlaceGrassToTile( surface, tile.position )
           if game.tile_prototypes[terraformation[ tile.name ]] ~= nil
             then
-              table.insert( global.te.tiles, { name = terraformation[ tile.name ], position = tile.position })
+              table.insert( storage.te.tiles, { name = terraformation[ tile.name ], position = tile.position })
             end
         end
       end
@@ -756,7 +756,7 @@ function TreeRotted( surface, position, limit, chance, tiles )
 end
 
 function TreeExpansion( surface, position, chance )
-  if global.te.random( 1, 99 ) < chance
+  if storage.te.random( 1, 99 ) < chance
     then
     local trees = surface.count_entities_filtered{ position = position, radius = 19, type = "tree" }
     if trees < settings.global[ "max_trees_count" ].value
@@ -787,7 +787,7 @@ function TreeExpansion( surface, position, chance )
 end
 
 function TreeForestExpansion( surface, position, chance )
-  if global.te.random( 1, 99 ) < chance
+  if storage.te.random( 1, 99 ) < chance
     then
     local trees_count = surface.count_entities_filtered{ position = position, radius = 19, type = "tree" }
     if trees_count == 0
@@ -814,7 +814,7 @@ function TreeForestExpansion( surface, position, chance )
           end
           local center = tree.position
           local radius = 18
-          if global.te.random( 1, 99 ) > 20
+          if storage.te.random( 1, 99 ) > 20
             then
             force_to_tile_center = true
           else

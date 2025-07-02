@@ -1,4 +1,4 @@
-global.te = {
+storage.te = {
   tiles = { },
   chunks = { },
   grass_trees = { },
