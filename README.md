@@ -1,81 +1,34 @@
-[![Release](https://github.com/fgardt/factorio-mod-template/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/fgardt/factorio-mod-template/actions/workflows/release.yml)
-<!--                           ^======[REPLACE THIS]======^                                                                          ^======[REPLACE THIS]======^  -->
+Fork and 2.0 port of [TerrainEvolution](https://mods.factorio.com/mod/TerrainEvolution) by Cheshirrski. This current version makes as few changes as possible to the mod to maintain the creator's original vision. Future updates will add new changes. I don't speak Russian, so I can't verify how well that existing English text matches the creator's native Russian text.
 
-# factorio-mod-template
+The mod adds a dynamic terrain change to the game.
 
-A small Factorio Mod template which also contains GitHub Actions for automatic changelog generation, packaging and releasing to the [Factorio Mod Portal](https://mods.factorio.com)
+In areas with high pollution, soil degradation occurs along the chain grass-> earth-> desert-> sand-> wasteland. Coastal water cells will sometimes dry out to form sand cells. Coastal wasteland cages will occasionally flood to form a water cage. In areas with high pollution, nothing grows and there is a chance of forest fires. Trees damaged by pollution have a 100% chance of catching fire. Fires create wasteland cells.
 
-# How it works
+- Trees grow in areas without pollution. The trees gradually change color and dry out. Withered trees decompose and there is a gradual restoration of the soil along the reverse, but slower chain of wasteland -> sand -> desert -> earth -> grass. Each biome has its own tree species. The wastelands are home to the ugliest trees, but they have the shortest life cycle.
 
-This template uses [semantic-release](https://github.com/semantic-release/semantic-release) to automate the changelog generation aswell as packaging and releasing of the mod. \
-To achieve this it analyzes your commit messages to figure out what the new version should be and what to put into the changelog.
-Packaging and releasing to the factorio mod portal is done with [this plugin](https://github.com/fgardt/semantic-release-factorio). \
-Additionally the GitHub Action will also create a release in your repository on GitHub itself.
+- Cells with any coating are not subject to change, but nothing grows on them.
 
-Once you push new commits to the main branch the release action will trigger. \
-First it will analyze all commits since the last release (determined from the last tag) to figure out if a new version should be released and what version it should be. \
-To make this possible you need to follow a commit message convention. The default convention this template uses is [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) with the following types:
+- When a tree near a cliff dries up, there is a 5% chance that the cliff cell will disappear.
 
-| Commit type                 | Changelog section |
-| --------------------------- | ----------------- |
-| `feat` or `feature`         | `Features`        |
-| `fix`                       | `Bugfixes`        |
-| `perf` or `performance`     | `Optimizations`   |
-| `compat` or `compatibility` | `Compatibility`   |
-| `balance`                   | `Balancing`       |
-| `graphics`                  | `Graphics`        |
-| `sound`                     | `Sounds`          |
-| `gui`                       | `Gui`             |
-| `info`                      | `Info`            |
-| `locale`                    | `Locale`          |
-| `translate`                 | `Translation`     |
-| `control`                   | `Control`         |
-| `other`                     | `Changes`         |
+- Hi Ripley - With this setting, beetle blood eats away at any surface, but improves the soil cage to the max.
 
-Because a push to the main branch triggers the release action it is recommended to work on a separate branch until your work is done and then merge that branch into main to release it. \
-_Or you just work locally and if you want to release you push your changes to main, up to you how you want to do it ;)_
+### How it works - 
 
-# How to use
+Every n ticks, a random chunk (or several) is selected, the pollution in the chunk is read and, depending on the pollution, certain processes occur. In aggressive mode, there is an additional passage through the chunks, which contain the player's buildings.
 
-## Repository setup
+Adds an annual cycle to the game. The duration of the day, night, twilight is calculated separately for each day. To simplify calculations, a year lasts 360 days, 30 days in a month. The crash occurred on the 1st of the 1st year. 90th, 270th day - equinox, 180 - summer solstice, 360 - winter solstice.
 
-Click the `Use this template` button and create your own repository.
+## Presets:
+ - Winter is coming - half a year is a very short day, half a year is a very short night
+ - Middle-earth - daily cycles like in middle latitudes
+ - Equator - the default factorio world with short nights and twilight without a dynamic change in duration
 
-Once you have your new repository you need to add a Factorio token as a GitHub Actions secret so that the mod releasing can work. \
-To get the token go to [Factorio's website](https://factorio.com/login) and login with your account. \
-Then you need to go to your [profile](https://factorio.com/profile) and generate a new API key. \
-The API key needs `Upload Mods`, `Publish Mods` and `Edit Mods` permissions. Copy the generated key.
+For the first two presets - trees do not grow until the length of the day is less than the length of the night
 
-Now you need to go to your repository settings > `Secrets and variables` > `Actions` and add a new Repository secret called `FACTORIO_TOKEN` with your copied key as the secret.
+New setting to change the darkness of the night
 
-## Mod setup
+The mod has many settings, everything can be customized for yourself. 
 
-- Swap out the [`LICENSE`](LICENSE) to your own liking _**(especially change out my name for yours)**_
-- Populate the [`info.json`](info.json) file with correct values _(the `version` field gets updated automatically)_
-- Add the corresponding text into [`locale.cfg`](locale/en/locale.cfg)
-- Add a `thumbnail.png` to the root of the repository _([ideally 144x144px](https://wiki.factorio.com/Tutorial:Mod_structure#Files))_
+## Special Thanks
 
-# Misc
-
-## How the packaging works
-
-The [`semantic-release-factorio` plugin](https://github.com/fgardt/semantic-release-factorio) uses the `git archive` command to package the mod. \
-That way you can specify what folders / files to exclude from your packaged mod by specifying them in [`.gitattributes`](.gitattributes).
-
-If you want to locally test packaging of your mod you can run the following command:
-```sh
-git archive --format zip --prefix [YOUR-MOD-NAME]/ --worktree-attributes --output [YOUR-MOD-NAME]_[VERSION].zip HEAD
-```
-
-## Changing the commit message convention
-
-If you want to change the commit message convention you can do so by changing the 2 `preset` fields in the [`.releaserc.json`](.releaserc.json) file. \
-Possible presets are: [`angular`](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular), [`atom`](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-atom), [`codemirror`](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-codemirror), [`ember`](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-ember), [`eslint`](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-eslint), [`express`](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-express), [`jquery`](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-jquery), [`jshint`](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-jshint), [`conventionalcommits`](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-conventionalcommits).
-
-Additionally you also need to modify the worflow file [`.github/workflows/release.yml`](.github/workflows/release.yml) to use the package that corresponds to your chosen preset. \
-Replace `conventional-changelog-conventionalcommits` with `conventional-changelog-[YOUR PRESET]` accordingly.
-
-## Need help?
-
-Checkout the [official Factorio Discord](https://discord.gg/factorio) and check the pins in the `#mod-making` channel. \
-There is also the [Lua API documentation](https://lua-api.factorio.com/latest/) and the [modding section in the wiki](https://wiki.factorio.com/Modding).
+- The people of Ukraine, including Cheshirrski. The ongoing war in Ukraine prevents Cheshirrski from updating their mods themselves.
