@@ -3,8 +3,8 @@
 	"version": "1.1.20",
 	"factorio_version": "2.0",
 	"homepage": "https://github.com/nicholasgower/planet-muluna",
-	"title": "TerrainEvolution",
+	"title": "Terrain Evolution 2",
 	"author": "MeteorSwarm, Cheshirrski",
-	"description": "Features:\n - Soil degradation/evolution\n - Floods\n - Drought\n - Fires\n - Fires burn the soil\n - Trees expantion\n - Trees evolution\n - Rotting trees\n - Weathering of cliffs\n - Dynamic daily cycle with presets, seasons\n - Hi Ripley\n",
+	"description": "2.0 port of TerrainEvolution\nFeatures:\n - Soil degradation/evolution\n - Floods\n - Drought\n - Fires\n - Fires burn the soil\n - Trees expantion\n - Trees evolution\n - Rotting trees\n - Weathering of cliffs\n - Dynamic daily cycle with presets, seasons\n - Hi Ripley\n",
 	"dependencies": ["base"]
 }
