@@ -13,7 +13,7 @@ data:extend(
       name = "nature_events_every",
       setting_type = "runtime-global",
       default_value = 600,
-      allowed_values = { 60, 300, 600, 900, 1200, 2400, 3600 },
+      allowed_values = { 1, 60, 300, 600, 900, 1200, 2400, 3600 },
       order = "b",
     },
     {

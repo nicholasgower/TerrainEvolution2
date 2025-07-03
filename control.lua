@@ -387,7 +387,7 @@ function GetRandomTree( biome )
   end
 end
 
-function NatureEvents( event )
+function NatureEvents( event ) --Runs every n ticks.
   storage.te.tiles = { }
   local surface = game.surfaces[ 1 ]
   for j = 1, settings.global[ "chunks" ].value do
@@ -451,7 +451,7 @@ function RandomPosition( position )
   return position
 end
 
-function EvolutionProcessor( chunk, surface )
+function EvolutionProcessor( chunk, surface ) --Runs on single chunk to determine climate change
   local minimal_pollution = settings.global[ "minimal_pollution" ].value
   local new_trees_chance = settings.global[ "new_trees_chance" ].value
   local new_trees_count = settings.global[ "new_trees_count" ].value
@@ -560,7 +560,7 @@ function SoilEvolution( surface, position, limit, chance )
     for _, tile in pairs ( tiles ) do
       if storage.te.random( 1, 99 ) < chance
         then
-        if game.tile_prototypes[terraformation[ tile.name ]] ~= nil
+        if prototypes.tile[terraformation[ tile.name ]] ~= nil
           then
             table.insert( storage.te.tiles, { name = terraformation[ tile.name ], position = tile.position })
           end
@@ -570,7 +570,7 @@ function SoilEvolution( surface, position, limit, chance )
 end
 
 function Flood ( surface, position, limit, chance )
-  local water_tiles = surface.find_tiles_filtered{ position = position, radius = 16, collision_mask = "water-tile", limit = limit }
+  local water_tiles = surface.find_tiles_filtered{ position = position, radius = 16, collision_mask = "water_tile", limit = limit }
   if water_tiles ~= nil
     then
     for _, water_tile in pairs ( water_tiles ) do
@@ -598,13 +598,13 @@ function Flood ( surface, position, limit, chance )
 end
 
 function Drought ( surface, position, limit, chance )
-  local ground_tiles = surface.find_tiles_filtered{ position = position, radius = 1.5, collision_mask = "ground-tile", limit = limit }
+  local ground_tiles = surface.find_tiles_filtered{ position = position, radius = 1.5, collision_mask = "ground_tile", limit = limit }
   if ground_tiles ~= nil
     then
     for _, ground_tile in pairs ( ground_tiles ) do
       if storage.te.random( 1, 99 ) < chance
         then
-        local water_tiles = surface.find_tiles_filtered{ position = ground_tile.position, radius = 1, collision_mask = "water-tile", limit = 1 }
+        local water_tiles = surface.find_tiles_filtered{ position = ground_tile.position, radius = 1, collision_mask = "water_tile", limit = 1 }
         if water_tiles ~= nil
           then
           for _, water_tile in pairs ( water_tiles ) do
@@ -674,7 +674,7 @@ function TreeEvolution( surface, position, limit, chance )
             for _, cliff in pairs ( cliffs ) do
               if storage.te.random( 1, 99 ) < 5
                 then
-                surface.create_entity({ name = "rock-big", position = cliff.position })
+                surface.create_entity({ name = "big-rock", position = cliff.position })
                 cliff.destroy({ do_cliff_correction = true })
               end
             end
@@ -745,7 +745,7 @@ function TreeRotted( surface, position, limit, chance, tiles )
           then
           tree.destroy( )
           PlaceGrassToTile( surface, tile.position )
-          if game.tile_prototypes[terraformation[ tile.name ]] ~= nil
+          if prototypes.tile[terraformation[ tile.name ]] ~= nil
             then
               table.insert( storage.te.tiles, { name = terraformation[ tile.name ], position = tile.position })
             end
