@@ -597,6 +597,7 @@ function Flood ( surface, position, limit, chance )
   end
 end
 
+
 function Drought ( surface, position, limit, chance )
   local ground_tiles = surface.find_tiles_filtered{ position = position, radius = 1.5, collision_mask = "ground_tile", limit = limit }
   if ground_tiles ~= nil
