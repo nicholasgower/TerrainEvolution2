@@ -937,7 +937,7 @@ function ShowCurrentDate( event )
   day_of_month = day_of_month + 1
   year = year + 1
   month = month + 1
-  local evolution_factor = Round( game.forces.enemy.evolution_factor, 2 ) * 100
+  local evolution_factor = Round( game.forces.enemy.get_evolution_factor(surface), 2 ) * 100
   local wind_speed = Round( surface.wind_speed, 2 ) * 100
   local wind_orientation = surface.wind_orientation
   local pollution = Round( surface.get_pollution( player.position ))
