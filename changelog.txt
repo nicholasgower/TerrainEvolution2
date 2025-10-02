@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 2025-10-02
+  Bugfixes:
+    - Fixed meteorological data crash to account for evolution factor now being per-surface. By Techjar.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.0
 Date: 2025-07-03
   Features:
